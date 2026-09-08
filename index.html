@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solana Narrative Radar</title>
+<style>
+:root{--bg:#0b0e14;--card:#121722;--tx:#e6e9f0;--mut:#8b94a7;--acc:#14f195;--acc2:#9945ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);
+font:15px/1.5 system-ui,-apple-system,sans-serif}
+header{padding:28px 20px 10px;max-width:980px;margin:0 auto}
+h1{margin:0;font-size:26px}h1 span{color:var(--acc)}
+.sub{color:var(--mut);margin-top:6px}
+main{max-width:980px;margin:0 auto;padding:16px 20px 60px}
+.card{background:var(--card);border:1px solid #1d2433;border-radius:12px;
+padding:18px;margin:14px 0}
+.rank{display:inline-block;background:var(--acc2);color:#fff;border-radius:6px;
+padding:2px 8px;font-size:12px;font-weight:700}
+.score{float:right;color:var(--acc);font-weight:700}
+.tags{color:var(--acc);text-transform:uppercase;letter-spacing:.06em;font-size:13px;
+font-weight:700;margin:8px 0 4px}
+.src{color:var(--mut);font-size:12px;margin-bottom:10px}
+.sig{font-size:13px;color:var(--mut);padding:6px 0;border-top:1px solid #1a2130}
+.sig a{color:#7fb3ff;text-decoration:none;word-break:break-all}
+.idea{margin-top:10px;padding:10px;border-left:3px solid var(--acc);background:#0f1420;
+border-radius:0 8px 8px 0}
+.idea b{color:var(--tx)} .idea small{color:var(--mut)}
+footer{max-width:980px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-size:12px}
+</style></head><body>
+<header><h1>Solana <span>Narrative Radar</span></h1>
+<div class="sub" id="period"></div></header><main id="app"></main>
+<footer>Data: GitHub Search · Hacker News Algolia · Reddit · DexScreener ·
+Superteam Earn · news RSS. Runs on free public APIs; refresh = re-run `python run.py`.</footer>
+<script>
+fetch('data.json').then(r=>r.json()).then(d=>{
+ document.getElementById('period').textContent =
+   d.period_start+' → '+d.period_end+' · '+d.narratives.length+' narratives · sources: '+d.sources.join(', ');
+ const app=document.getElementById('app');
+ d.narratives.forEach(nv=>{
+  const el=document.createElement('div');el.className='card';
+  const sigs=nv.signals.slice(0,6).map(s=>{
+   const t=s.summary.split(' :: ')[0];
+   return '<div class="sig"><code>'+s.source+'</code> '+esc(t)+
+          ' <a href="'+esc(s.url)+'" target="_blank" rel="noopener">↗</a></div>';
+  }).join('');
+  const ideas=(d.ideas[nv.rank]||[]).map(i=>
+   '<div class="idea"><b>'+esc(i.title)+'</b><br><small>'+esc(i.why_now)+'</small><br>'+
+   '<small>'+esc(i.tie_in)+'</small></div>').join('');
+  el.innerHTML='<div class="rank">N'+nv.rank+'</div><span class="score">'+nv.score+
+   '</span><div class="tags">'+esc(nv.label_tokens.slice(0,4).join(' · '))+
+   '</div><div class="src">'+nv.n_signals+' signals · '+esc(nv.sources.join(', '))+'</div>'+
+   sigs+ideas;
+  app.appendChild(el);
+ });
+});
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+</script></body></html>
