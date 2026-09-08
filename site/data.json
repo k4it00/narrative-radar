@@ -1,0 +1,1051 @@
+{
+ "period_start": "2026-08-25",
+ "period_end": "2026-09-08",
+ "sources": [
+  "github",
+  "hackernews",
+  "dexscreener",
+  "news",
+  "superteam-earn"
+ ],
+ "narratives": [
+  {
+   "score": 14.72,
+   "sources": [
+    "github"
+   ],
+   "n_signals": 4,
+   "label_tokens": [
+    "crypto",
+    "open",
+    "source",
+    "software",
+    "trading"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:hummingbot/hummingbot",
+     "summary": "[active repo] hummingbot/hummingbot stars=19913 pushed=2026-09-07 created=2019-04-02 :: Open source software that helps you create and deploy high-frequency crypto trading bots",
+     "url": "https://github.com/hummingbot/hummingbot",
+     "ts": 1788848386.5305219,
+     "weight": 3.8,
+     "tokens": [
+      "bots",
+      "create",
+      "crypto",
+      "deploy",
+      "helps",
+      "high-frequency",
+      "hummingbot",
+      "open",
+      "software",
+      "source",
+      "trading"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:Drakkar-Software/OctoBot",
+     "summary": "[active repo] Drakkar-Software/OctoBot stars=6541 pushed=2026-09-07 created=2018-02-23 :: Free open source crypto trading bot to automate AI, Grid, DCA and TradingView strategies on Binance, Hyperliquid and 15+ exchanges, with a simple interface.",
+     "url": "https://github.com/Drakkar-Software/OctoBot",
+     "ts": 1788848386.5305889,
+     "weight": 3.8,
+     "tokens": [
+      "automate",
+      "binance",
+      "bot",
+      "crypto",
+      "dca",
+      "drakkar-software",
+      "exchanges",
+      "free",
+      "grid",
+      "hyperliquid",
+      "interface",
+      "octobot",
+      "open",
+      "simple",
+      "source",
+      "strategies",
+      "trading",
+      "tradingview"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:OneKeyHQ/app-monorepo",
+     "summary": "[active repo] OneKeyHQ/app-monorepo stars=2435 pushed=2026-09-08 created=2021-11-22 :: Secure, open source and community driven crypto wallet runs on all platforms and trusted by millions.",
+     "url": "https://github.com/OneKeyHQ/app-monorepo",
+     "ts": 1788848386.5306237,
+     "weight": 3.8,
+     "tokens": [
+      "app-monorepo",
+      "community",
+      "crypto",
+      "driven",
+      "millions",
+      "onekeyhq",
+      "open",
+      "platforms",
+      "runs",
+      "secure",
+      "source",
+      "trusted",
+      "wallet"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:firedancer-io/firedancer",
+     "summary": "[active repo] firedancer-io/firedancer stars=1517 pushed=2026-09-08 created=2022-08-16 :: Firedancer is Jump Crypto's Solana validator software.",
+     "url": "https://github.com/firedancer-io/firedancer",
+     "ts": 1788848386.5306706,
+     "weight": 3.32,
+     "tokens": [
+      "crypto",
+      "firedancer",
+      "firedancer-io",
+      "jump",
+      "software",
+      "solana",
+      "validator"
+     ]
+    }
+   ],
+   "rank": 1
+  },
+  {
+   "score": 10.18,
+   "sources": [
+    "github",
+    "news"
+   ],
+   "n_signals": 3,
+   "label_tokens": [
+    "non-custodial",
+    "chain",
+    "ethereum",
+    "blockchains",
+    "smart",
+    "decentralized"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:horizontalsystems/unstoppable-wallet-android",
+     "summary": "[active repo] horizontalsystems/unstoppable-wallet-android stars=1242 pushed=2026-09-08 created=2018-07-30 :: A powerful non-custodial multi-wallet for Bitcoin, Ethereum, Binance Smart Chain, Avalanche, Solana and other blockchains. Non-custodial crypto and NFT storage, onchain decentralized exchange, institutional grade analyti",
+     "url": "https://github.com/horizontalsystems/unstoppable-wallet-android",
+     "ts": 1788848386.5307093,
+     "weight": 3.04,
+     "tokens": [
+      "analytics",
+      "avalanche",
+      "binance",
+      "bitcoin",
+      "blockchains",
+      "chain",
+      "controls",
+      "cryptcurrency",
+      "crypto",
+      "decentralized",
+      "design",
+      "ethereum",
+      "exchange",
+      "extensive",
+      "grade",
+      "horizontalsystems",
+      "human",
+      "implemented",
+      "institutional",
+      "kotlin",
+      "markets",
+      "multi-wallet",
+      "nft",
+      "non-custodial",
+      "onchain",
+      "oriented",
+      "other",
+      "powerful",
+      "privacy",
+      "smart",
+      "solana",
+      "storage"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:horizontalsystems/unstoppable-wallet-ios",
+     "summary": "[active repo] horizontalsystems/unstoppable-wallet-ios stars=902 pushed=2026-09-07 created=2018-07-27 :: Multi-wallet for Bitcoin, Ethereum, Binance Smart Chain and other emerging blockchains. Non-custodial storage, decentralized exchange, and extensive analytics for thousands of tokens and NFTs. Implemented on Swift.",
+     "url": "https://github.com/horizontalsystems/unstoppable-wallet-ios",
+     "ts": 1788848386.5307815,
+     "weight": 2.7,
+     "tokens": [
+      "analytics",
+      "binance",
+      "bitcoin",
+      "blockchains",
+      "chain",
+      "decentralized",
+      "emerging",
+      "ethereum",
+      "exchange",
+      "extensive",
+      "horizontalsystems",
+      "implemented",
+      "multi-wallet",
+      "nfts",
+      "non-custodial",
+      "other",
+      "smart",
+      "storage",
+      "swift",
+      "thousands",
+      "tokens",
+      "unstoppable-wallet-ios"
+     ]
+    },
+    {
+     "source": "news:cointelegraph",
+     "title": "nw:FalconX, Interstice Connect Canton to Ethereum, Solana and Robinhood Chain",
+     "summary": "cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana and Robinhood Chain ::     The non-custodial cross-chain swap engine connects Canton\u2019s institutional tokenized-asset markets with liquidity and trading activity across major public blockchains. ",
+     "url": "https://cointelegraph.com/news/interstice-falconx-cross-chain-swap-engine-canton-solana-ethereum-robinhood-chain?utm_source=rss_feed&utm_medium=rss_tag_solana&utm_campaign=rss_partner_inbound",
+     "ts": 1787085948.0,
+     "weight": 1.7,
+     "tokens": [
+      "across",
+      "activity",
+      "blockchains",
+      "canton",
+      "chain",
+      "connect",
+      "connects",
+      "cross-chain",
+      "engine",
+      "ethereum",
+      "falconx",
+      "institutional",
+      "interstice",
+      "liquidity",
+      "major",
+      "markets",
+      "non-custodial",
+      "public",
+      "robinhood",
+      "solana",
+      "swap",
+      "tokenized-asset",
+      "trading"
+     ]
+    }
+   ],
+   "rank": 2
+  },
+  {
+   "score": 9.0,
+   "sources": [
+    "github"
+   ],
+   "n_signals": 5,
+   "label_tokens": [
+    "network",
+    "independent",
+    "profile",
+    "api-evangelist",
+    "surface",
+    "decentralized"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:api-evangelist/helium-network",
+     "summary": "[depin repo] api-evangelist/helium-network stars=0 pushed=2026-09-07 created=2026-05-23 :: Helium Network \u2014 independent third-party profile of a public API surface, by API Evangelist. Helium operates two decentralized wireless networks - a global LoRaWAN network for low-power IoT devices and a cellular + Wi-Fi",
+     "url": "https://github.com/api-evangelist/helium-network",
+     "ts": 1788848388.8018758,
+     "weight": 1.8,
+     "tokens": [
+      "api",
+      "api-evangelist",
+      "blockchain",
+      "cellular",
+      "connectivity",
+      "decentralized",
+      "devices",
+      "evangelist",
+      "global",
+      "helium",
+      "helium-network",
+      "hnt",
+      "independent",
+      "iot",
+      "lorawan",
+      "low-power",
+      "mobil",
+      "mobile",
+      "network",
+      "networks",
+      "offload",
+      "operates",
+      "profile",
+      "public",
+      "settled",
+      "solana",
+      "surface",
+      "third-party",
+      "wi-fi",
+      "wireless"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:api-evangelist/wynd-network",
+     "summary": "[depin repo] api-evangelist/wynd-network stars=0 pushed=2026-09-04 created=2026-08-02 :: Wynd Network \u2014 independent third-party profile of a public API surface, by API Evangelist. Wynd Network (now operating as Wynd Labs) is the company behind Grass, a decentralized physical infrastructure network (DePIN) on",
+     "url": "https://github.com/api-evangelist/wynd-network",
+     "ts": 1788848388.8019018,
+     "weight": 1.8,
+     "tokens": [
+      "api",
+      "api-evangelist",
+      "bandwidth",
+      "behind",
+      "company",
+      "decentralized",
+      "depin",
+      "evangelist",
+      "grass",
+      "independent",
+      "infrastructure",
+      "internet",
+      "labs",
+      "network",
+      "operating",
+      "physical",
+      "profile",
+      "public",
+      "rewards",
+      "sharing",
+      "solana",
+      "surface",
+      "their",
+      "third-party",
+      "unused",
+      "users",
+      "wynd",
+      "wynd-network"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:api-evangelist/io-net",
+     "summary": "[depin repo] api-evangelist/io-net stars=0 pushed=2026-09-04 created=2026-05-25 :: io.net \u2014 independent third-party profile of a public API surface, by API Evangelist. io.net is a decentralized GPU network for AI compute, built on Solana, that aggregates idle consumer and data-center GPUs (NVIDIA A100,",
+     "url": "https://github.com/api-evangelist/io-net",
+     "ts": 1788848388.8019223,
+     "weight": 1.8,
+     "tokens": [
+      "a100",
+      "aggregates",
+      "api",
+      "api-evangelist",
+      "blackwell-class",
+      "built",
+      "clusters",
+      "compute",
+      "consumer",
+      "data-center",
+      "decentralized",
+      "evangelist",
+      "framework",
+      "geo-distributed",
+      "gpu",
+      "gpus",
+      "h100",
+      "h200",
+      "idle",
+      "independent",
+      "io-net",
+      "io.net",
+      "network",
+      "nvidia",
+      "on-demand",
+      "orchestrated",
+      "profile",
+      "public",
+      "ray",
+      "solana",
+      "surface",
+      "third-party"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:api-evangelist/doublezero",
+     "summary": "[depin repo] api-evangelist/doublezero stars=0 pushed=2026-09-04 created=2026-07-26 :: DoubleZero \u2014 independent third-party profile of a public API surface, by API Evangelist. DoubleZero is a decentralized physical infrastructure network (DePIN) that builds and operates a global, permissionless, dedicated-",
+     "url": "https://github.com/api-evangelist/doublezero",
+     "ts": 1788848388.8019457,
+     "weight": 1.8,
+     "tokens": [
+      "api",
+      "api-evangelist",
+      "backbone",
+      "blockchains",
+      "builds",
+      "connectivity",
+      "decentralized",
+      "dedicated-fiber",
+      "delivering",
+      "depin",
+      "distributed",
+      "doublezero",
+      "evangelist",
+      "global",
+      "high-throughput",
+      "independent",
+      "infrastructure",
+      "low-latency",
+      "milliseconds",
+      "network",
+      "operates",
+      "permissionless",
+      "physical",
+      "profile",
+      "public",
+      "surface",
+      "systems",
+      "third-party"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:api-evangelist/dabba",
+     "summary": "[depin repo] api-evangelist/dabba stars=0 pushed=2026-09-04 created=2026-07-26 :: Dabba \u2014 independent third-party profile of a public API surface, by API Evangelist. Dabba (Wifi Dabba) is a Web3-powered decentralized physical infrastructure network (DePIN) that brings affordable internet connectivity ",
+     "url": "https://github.com/api-evangelist/dabba",
+     "ts": 1788848388.801968,
+     "weight": 1.8,
+     "tokens": [
+      "affordable",
+      "api",
+      "api-evangelist",
+      "brings",
+      "cable",
+      "connectivity",
+      "dabba",
+      "decentralized",
+      "depin",
+      "deploys",
+      "emerging",
+      "evangelist",
+      "hotspots",
+      "independent",
+      "india",
+      "infrastructure",
+      "internet",
+      "lite",
+      "local",
+      "low-cost",
+      "markets",
+      "network",
+      "operators",
+      "physical",
+      "profile",
+      "public",
+      "starting",
+      "surface",
+      "third-party",
+      "through",
+      "web3-powered",
+      "wifi"
+     ]
+    }
+   ],
+   "rank": 3
+  },
+  {
+   "score": 7.18,
+   "sources": [
+    "github"
+   ],
+   "n_signals": 2,
+   "label_tokens": [
+    "solana-foundation",
+    "sdk"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:solana-foundation/solana-web3.js",
+     "summary": "[active repo] solana-foundation/solana-web3.js stars=2754 pushed=2026-09-08 created=2018-08-22 :: Solana JavaScript SDK",
+     "url": "https://github.com/solana-foundation/solana-web3.js",
+     "ts": 1788848386.5306168,
+     "weight": 3.8,
+     "tokens": [
+      "javascript",
+      "sdk",
+      "solana",
+      "solana-foundation",
+      "solana-web3.js"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:solana-foundation/solana-go",
+     "summary": "[active repo] solana-foundation/solana-go stars=1581 pushed=2026-09-04 created=2021-06-29 :: Go SDK library and RPC client for the Solana Blockchain",
+     "url": "https://github.com/solana-foundation/solana-go",
+     "ts": 1788848386.530662,
+     "weight": 3.38,
+     "tokens": [
+      "blockchain",
+      "client",
+      "library",
+      "rpc",
+      "sdk",
+      "solana",
+      "solana-foundation",
+      "solana-go"
+     ]
+    }
+   ],
+   "rank": 4
+  },
+  {
+   "score": 7.02,
+   "sources": [
+    "github"
+   ],
+   "n_signals": 2,
+   "label_tokens": [
+    "program"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:otter-sec/anchor",
+     "summary": "[active repo] otter-sec/anchor stars=5128 pushed=2026-09-07 created=2021-01-01 :: \u2693 Solana Program Framework",
+     "url": "https://github.com/otter-sec/anchor",
+     "ts": 1788848386.530608,
+     "weight": 3.8,
+     "tokens": [
+      "anchor",
+      "framework",
+      "otter-sec",
+      "program",
+      "solana"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:solana-foundation/program-examples",
+     "summary": "[active repo] solana-foundation/program-examples stars=1423 pushed=2026-09-01 created=2022-07-01 :: A repository of Solana program examples",
+     "url": "https://github.com/solana-foundation/program-examples",
+     "ts": 1788848386.530684,
+     "weight": 3.22,
+     "tokens": [
+      "examples",
+      "program",
+      "program-examples",
+      "repository",
+      "solana",
+      "solana-foundation"
+     ]
+    }
+   ],
+   "rank": 5
+  },
+  {
+   "score": 6.39,
+   "sources": [
+    "github"
+   ],
+   "n_signals": 2,
+   "label_tokens": [
+    "rango",
+    "rango-exchange",
+    "exchange"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:rango-exchange/rango-sdk",
+     "summary": "[active repo] rango-exchange/rango-sdk stars=1659 pushed=2026-09-02 created=2022-02-10 :: Rango Exchange Typescript SDK",
+     "url": "https://github.com/rango-exchange/rango-sdk",
+     "ts": 1788848386.5306554,
+     "weight": 3.46,
+     "tokens": [
+      "exchange",
+      "rango",
+      "rango-exchange",
+      "rango-sdk",
+      "sdk",
+      "typescript"
+     ]
+    },
+    {
+     "source": "github",
+     "title": "gh:rango-exchange/rango-client",
+     "summary": "[active repo] rango-exchange/rango-client stars=1126 pushed=2026-09-07 created=2022-12-18 :: Rango Exchange Widget & Wallets Library",
+     "url": "https://github.com/rango-exchange/rango-client",
+     "ts": 1788848386.5307527,
+     "weight": 2.93,
+     "tokens": [
+      "exchange",
+      "library",
+      "rango",
+      "rango-client",
+      "rango-exchange",
+      "wallets",
+      "widget"
+     ]
+    }
+   ],
+   "rank": 6
+  },
+  {
+   "score": 6.18,
+   "sources": [
+    "github",
+    "hackernews"
+   ],
+   "n_signals": 2,
+   "label_tokens": [
+    "coin"
+   ],
+   "signals": [
+    {
+     "source": "github",
+     "title": "gh:Ashkiln/pumpfun-launcher",
+     "summary": "[new repo] Ashkiln/pumpfun-launcher stars=3 pushed=2026-09-06 created=2026-09-03 :: Launch a pump.fun coin and buy it in the same block, then let it sell itself.",
+     "url": "https://github.com/Ashkiln/pumpfun-launcher",
+     "ts": 1788848385.1707866,
+     "weight": 3.3,
+     "tokens": [
+      "ashkiln",
+      "block",
+      "buy",
+      "coin",
+      "itself",
+      "launch",
+      "let",
+      "pump.fun",
+      "pumpfun-launcher",
+      "same",
+      "sell"
+     ]
+    },
+    {
+     "source": "hackernews",
+     "title": "hn:LIOS Coin",
+     "summary": "HN story (1 pts, 2 comments): LIOS Coin",
+     "url": "https://pump.fun/coin/6rnLa8Lq3zACFyu7dxVmxzXPumtPEcebx9HiktrKpump",
+     "ts": 1788266281,
+     "weight": 1.01,
+     "tokens": [
+      "coin",
+      "lios"
+     ]
+    }
+   ],
+   "rank": 7
+  },
+  {
+   "score": 6.15,
+   "sources": [
+    "dexscreener",
+    "superteam-earn"
+   ],
+   "n_signals": 4,
+   "label_tokens": [
+    "earn",
+    "cat",
+    "buy"
+   ],
+   "signals": [
+    {
+     "source": "dexscreener:topboost",
+     "title": "dx:topboost:sol:E4Ap4icMLw",
+     "summary": "DexScreener topboost Solana token E4Ap4icMLwKot8rkkTbq5JkS5kZxt5XCE3yfxbzYBjHx amount=? :: just buy the cat",
+     "url": "https://dexscreener.com/solana/E4Ap4icMLwKot8rkkTbq5JkS5kZxt5XCE3yfxbzYBjHx",
+     "ts": 1788848405.5271568,
+     "weight": 1.2,
+     "tokens": [
+      "E4Ap4icM",
+      "buy",
+      "cat"
+     ]
+    },
+    {
+     "source": "superteam-earn",
+     "title": "st:Trade, Tweet & Earn",
+     "summary": "Superteam Earn bounty 'Trade, Tweet & Earn' reward=500USDC skills= :: what sponsors pay builders to ship right now",
+     "url": "https://superteam.fun/earn/listing/trade-tweet-and-earn-1",
+     "ts": 1788848407.3485916,
+     "weight": 1.1,
+     "tokens": [
+      "earn",
+      "trade",
+      "tweet"
+     ]
+    },
+    {
+     "source": "dexscreener:boosted",
+     "title": "dx:boosted:sol:DgusxuYhbs",
+     "summary": "DexScreener boosted Solana token DgusxuYhbs5TqvLYNhEwEow8GwXyFNgc5hspP7SjfaNc amount=30 :: Own this cat and earn $OTC.",
+     "url": "https://dexscreener.com/solana/DgusxuYhbs5TqvLYNhEwEow8GwXyFNgc5hspP7SjfaNc",
+     "ts": 1788848405.3922555,
+     "weight": 0.9,
+     "tokens": [
+      "DgusxuYh",
+      "cat",
+      "earn",
+      "otc",
+      "own"
+     ]
+    },
+    {
+     "source": "dexscreener:newprofile",
+     "title": "dx:newprofile:sol:21J5UBb7BG",
+     "summary": "DexScreener newprofile Solana token 21J5UBb7BGvAbXKwbx9Ab84vLZnzphRTmQLwuT1jt9uS amount=? :: BUY ALBERT. HOLD ALBERT. EARN USDC.",
+     "url": "https://dexscreener.com/solana/21J5UBb7BGvAbXKwbx9Ab84vLZnzphRTmQLwuT1jt9uS",
+     "ts": 1788848405.6979783,
+     "weight": 0.9,
+     "tokens": [
+      "21J5UBb7",
+      "albert",
+      "buy",
+      "earn",
+      "hold",
+      "usdc"
+     ]
+    }
+   ],
+   "rank": 8
+  },
+  {
+   "score": 4.4,
+   "sources": [
+    "superteam-earn"
+   ],
+   "n_signals": 4,
+   "label_tokens": [
+    "content",
+    "bounty"
+   ],
+   "signals": [
+    {
+     "source": "superteam-earn",
+     "title": "st:Solana Summit Serbia Content Bounty: $10,000 for the best summit content",
+     "summary": "Superteam Earn bounty 'Solana Summit Serbia Content Bounty: $10,000 for the best summit content' reward=10000USDG skills= :: what sponsors pay builders to ship right now",
+     "url": "https://superteam.fun/earn/listing/solana-summit-serbia-content",
+     "ts": 1788848407.3485124,
+     "weight": 1.1,
+     "tokens": [
+      "bounty",
+      "content",
+      "serbia",
+      "solana",
+      "summit"
+     ]
+    },
+    {
+     "source": "superteam-earn",
+     "title": "st:CastleDAO Content Challenge",
+     "summary": "Superteam Earn bounty 'CastleDAO Content Challenge' reward=1000USDG skills= :: what sponsors pay builders to ship right now",
+     "url": "https://superteam.fun/earn/listing/castledao-content-challenge",
+     "ts": 1788848407.3485332,
+     "weight": 1.1,
+     "tokens": [
+      "castledao",
+      "challenge",
+      "content"
+     ]
+    },
+    {
+     "source": "superteam-earn",
+     "title": "st:$1,000 USDC Manic Bug Bounty",
+     "summary": "Superteam Earn bounty '$1,000 USDC Manic Bug Bounty' reward=1000USDC skills= :: what sponsors pay builders to ship right now",
+     "url": "https://superteam.fun/earn/listing/dollar1000-usdc-manic-bug-bounty",
+     "ts": 1788848407.3485382,
+     "weight": 1.1,
+     "tokens": [
+      "bounty",
+      "bug",
+      "manic",
+      "usdc"
+     ]
+    },
+    {
+     "source": "superteam-earn",
+     "title": "st:Show the world SOLARA \u2014 Content + Seeker dApp reviews",
+     "summary": "Superteam Earn bounty 'Show the world SOLARA \u2014 Content + Seeker dApp reviews' reward=500USDC skills= :: what sponsors pay builders to ship right now",
+     "url": "https://superteam.fun/earn/listing/show-the-world-solara-content-seeker-dapp-reviews-1",
+     "ts": 1788848407.3486006,
+     "weight": 1.1,
+     "tokens": [
+      "content",
+      "dapp",
+      "reviews",
+      "seeker",
+      "show",
+      "solara",
+      "world"
+     ]
+    }
+   ],
+   "rank": 9
+  },
+  {
+   "score": 3.0,
+   "sources": [
+    "dexscreener"
+   ],
+   "n_signals": 3,
+   "label_tokens": [
+    "under",
+    "PHgCReUn",
+    "counter"
+   ],
+   "signals": [
+    {
+     "source": "dexscreener:topboost",
+     "title": "dx:topboost:sol:PHgCReUnUs",
+     "summary": "DexScreener topboost Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=? :: Under The Counter",
+     "url": "https://dexscreener.com/solana/PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2",
+     "ts": 1788848405.527163,
+     "weight": 1.2,
+     "tokens": [
+      "PHgCReUn",
+      "counter",
+      "under"
+     ]
+    },
+    {
+     "source": "dexscreener:boosted",
+     "title": "dx:boosted:sol:PHgCReUnUs",
+     "summary": "DexScreener boosted Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=500 :: Under The Counter",
+     "url": "https://dexscreener.com/solana/PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2",
+     "ts": 1788848405.3921888,
+     "weight": 0.9,
+     "tokens": [
+      "PHgCReUn",
+      "counter",
+      "under"
+     ]
+    },
+    {
+     "source": "dexscreener:newprofile",
+     "title": "dx:newprofile:sol:PHgCReUnUs",
+     "summary": "DexScreener newprofile Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=? :: Under The Counter",
+     "url": "https://dexscreener.com/solana/PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2",
+     "ts": 1788848405.6979728,
+     "weight": 0.9,
+     "tokens": [
+      "PHgCReUn",
+      "counter",
+      "under"
+     ]
+    }
+   ],
+   "rank": 10
+  }
+ ],
+ "ideas": {
+  "1": [
+   {
+    "title": "Agent capability marketplace on Solana",
+    "why_now": "Agents that pay each other for tools/data need a settlement rail with sub-cent fees.",
+    "evidence": "github | [active repo] hummingbot/hummingbot stars=19913 pushed=2026-09-07 created=2019-04-02; github | [active repo] Drakkar-Software/OctoBot stars=6541 pushed=2026-09-07 created=2018-02-23; github | [active repo] OneKeyHQ/app-monorepo stars=2435 pushed=2026-09-08 created=2021-11-22",
+    "tie_in": "Named demand signals: hummingbot/hummingbot, Drakkar-Software/OctoBot, OneKeyHQ/app-monorepo, firedancer-io/firedancer. Hook: github | [active repo] Drakkar-Software/OctoBot stars=6541 pushed=2026-09-07 created=2018-02-23"
+   },
+   {
+    "title": "On-chain agent reputation registry",
+    "why_now": "As agent count grows, verifiable track records (payout history, task success) become the trust layer.",
+    "evidence": "github | [active repo] hummingbot/hummingbot stars=19913 pushed=2026-09-07 created=2019-04-02; github | [active repo] Drakkar-Software/OctoBot stars=6541 pushed=2026-09-07 created=2018-02-23; github | [active repo] OneKeyHQ/app-monorepo stars=2435 pushed=2026-09-08 created=2021-11-22",
+    "tie_in": "Named demand signals: hummingbot/hummingbot, Drakkar-Software/OctoBot, OneKeyHQ/app-monorepo, firedancer-io/firedancer. Hook: github | [active repo] OneKeyHQ/app-monorepo stars=2435 pushed=2026-09-08 created=2021-11-22"
+   },
+   {
+    "title": "Natural-language portfolio copilot with program constraints",
+    "why_now": "Users want agent-managed positions but need hard on-chain guardrails the agent cannot override.",
+    "evidence": "github | [active repo] hummingbot/hummingbot stars=19913 pushed=2026-09-07 created=2019-04-02; github | [active repo] Drakkar-Software/OctoBot stars=6541 pushed=2026-09-07 created=2018-02-23; github | [active repo] OneKeyHQ/app-monorepo stars=2435 pushed=2026-09-08 created=2021-11-22",
+    "tie_in": "Named demand signals: hummingbot/hummingbot, Drakkar-Software/OctoBot, OneKeyHQ/app-monorepo, firedancer-io/firedancer. Hook: github | [active repo] firedancer-io/firedancer stars=1517 pushed=2026-09-08 created=2022-08-16"
+   }
+  ],
+  "2": [
+   {
+    "title": "Cross-pool MEV-aware router with simulation guardrails",
+    "why_now": "Fragmented liquidity across CLMM pools makes naive routing expensive at size.",
+    "evidence": "github | [active repo] horizontalsystems/unstoppable-wallet-android stars=1242 pushed=2026-09-08 created=2018-07-30; github | [active repo] horizontalsystems/unstoppable-wallet-ios stars=902 pushed=2026-09-07 created=2018-07-27; news:cointelegraph | cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana and Robinhood Chain",
+    "tie_in": "Named demand signals: horizontalsystems/unstoppable-wallet-android, horizontalsystems/unstoppable-wallet-ios, cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana . Hook: github | [active repo] horizontalsystems/unstoppable-wallet-ios stars=902 pushed=2026-09-07 created=2018-07-27"
+   },
+   {
+    "title": "Automated LP position manager for concentrated liquidity",
+    "why_now": "Active-range management is manual and time-costly for retail LPs.",
+    "evidence": "github | [active repo] horizontalsystems/unstoppable-wallet-android stars=1242 pushed=2026-09-08 created=2018-07-30; github | [active repo] horizontalsystems/unstoppable-wallet-ios stars=902 pushed=2026-09-07 created=2018-07-27; news:cointelegraph | cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana and Robinhood Chain",
+    "tie_in": "Named demand signals: horizontalsystems/unstoppable-wallet-android, horizontalsystems/unstoppable-wallet-ios, cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana . Hook: news:cointelegraph | cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana and Robinhood Chain"
+   },
+   {
+    "title": "Real-time risk dashboard for perp traders",
+    "why_now": "Funding + liquidation data exist on-chain but are not surfaced in one decision view.",
+    "evidence": "github | [active repo] horizontalsystems/unstoppable-wallet-android stars=1242 pushed=2026-09-08 created=2018-07-30; github | [active repo] horizontalsystems/unstoppable-wallet-ios stars=902 pushed=2026-09-07 created=2018-07-27; news:cointelegraph | cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana and Robinhood Chain",
+    "tie_in": "Named demand signals: horizontalsystems/unstoppable-wallet-android, horizontalsystems/unstoppable-wallet-ios, cointelegraph: FalconX, Interstice Connect Canton to Ethereum, Solana . Hook: github | [active repo] horizontalsystems/unstoppable-wallet-android stars=1242 pushed=2026-09-08 created=2018-07-30"
+   }
+  ],
+  "3": [
+   {
+    "title": "DePIN coverage explorer with verifiable uptime",
+    "why_now": "Buyers of physical network coverage need proof-of-service maps, not marketing.",
+    "evidence": "github | [depin repo] api-evangelist/helium-network stars=0 pushed=2026-09-07 created=2026-05-23; github | [depin repo] api-evangelist/wynd-network stars=0 pushed=2026-09-04 created=2026-08-02; github | [depin repo] api-evangelist/io-net stars=0 pushed=2026-09-04 created=2026-05-25",
+    "tie_in": "Named demand signals: api-evangelist/helium-network, api-evangelist/wynd-network, api-evangelist/io-net, api-evangelist/doublezero. Hook: github | [depin repo] api-evangelist/wynd-network stars=0 pushed=2026-09-04 created=2026-08-02"
+   },
+   {
+    "title": "DePIN token sink designer toolkit",
+    "why_now": "Most DePIN tokens lack demand sinks; a reusable bonding/burn module is reusable infra.",
+    "evidence": "github | [depin repo] api-evangelist/helium-network stars=0 pushed=2026-09-07 created=2026-05-23; github | [depin repo] api-evangelist/wynd-network stars=0 pushed=2026-09-04 created=2026-08-02; github | [depin repo] api-evangelist/io-net stars=0 pushed=2026-09-04 created=2026-05-25",
+    "tie_in": "Named demand signals: api-evangelist/helium-network, api-evangelist/wynd-network, api-evangelist/io-net, api-evangelist/doublezero. Hook: github | [depin repo] api-evangelist/io-net stars=0 pushed=2026-09-04 created=2026-05-25"
+   },
+   {
+    "title": "Signal dashboard for this narrative",
+    "why_now": "Consolidate the underlying feeds below into one live view with alerts.",
+    "evidence": "github | [depin repo] api-evangelist/helium-network stars=0 pushed=2026-09-07 created=2026-05-23; github | [depin repo] api-evangelist/wynd-network stars=0 pushed=2026-09-04 created=2026-08-02; github | [depin repo] api-evangelist/io-net stars=0 pushed=2026-09-04 created=2026-05-25",
+    "tie_in": "Named demand signals: api-evangelist/helium-network, api-evangelist/wynd-network, api-evangelist/io-net, api-evangelist/doublezero. Hook: github | [depin repo] api-evangelist/doublezero stars=0 pushed=2026-09-04 created=2026-07-26"
+   }
+  ],
+  "4": [
+   {
+    "title": "High-signal Solana program diff watcher",
+    "why_now": "Anchored upgrades change behavior silently; a diff-alert service protects integrators.",
+    "evidence": "github | [active repo] solana-foundation/solana-web3.js stars=2754 pushed=2026-09-08 created=2018-08-22; github | [active repo] solana-foundation/solana-go stars=1581 pushed=2026-09-04 created=2021-06-29",
+    "tie_in": "Named demand signals: solana-foundation/solana-web3.js, solana-foundation/solana-go. Hook: github | [active repo] solana-foundation/solana-go stars=1581 pushed=2026-09-04 created=2021-06-29"
+   },
+   {
+    "title": "Free-tier Solana event stream to webhooks",
+    "why_now": "Small teams need push notifs on program events without running infra.",
+    "evidence": "github | [active repo] solana-foundation/solana-web3.js stars=2754 pushed=2026-09-08 created=2018-08-22; github | [active repo] solana-foundation/solana-go stars=1581 pushed=2026-09-04 created=2021-06-29",
+    "tie_in": "Named demand signals: solana-foundation/solana-web3.js, solana-foundation/solana-go. Hook: github | [active repo] solana-foundation/solana-web3.js stars=2754 pushed=2026-09-08 created=2018-08-22"
+   },
+   {
+    "title": "Signal dashboard for this narrative",
+    "why_now": "Consolidate the underlying feeds below into one live view with alerts.",
+    "evidence": "github | [active repo] solana-foundation/solana-web3.js stars=2754 pushed=2026-09-08 created=2018-08-22; github | [active repo] solana-foundation/solana-go stars=1581 pushed=2026-09-04 created=2021-06-29",
+    "tie_in": "Named demand signals: solana-foundation/solana-web3.js, solana-foundation/solana-go. Hook: github | [active repo] solana-foundation/solana-go stars=1581 pushed=2026-09-04 created=2021-06-29"
+   }
+  ],
+  "5": [
+   {
+    "title": "High-signal Solana program diff watcher",
+    "why_now": "Anchored upgrades change behavior silently; a diff-alert service protects integrators.",
+    "evidence": "github | [active repo] otter-sec/anchor stars=5128 pushed=2026-09-07 created=2021-01-01; github | [active repo] solana-foundation/program-examples stars=1423 pushed=2026-09-01 created=2022-07-01",
+    "tie_in": "Named demand signals: otter-sec/anchor, solana-foundation/program-examples. Hook: github | [active repo] solana-foundation/program-examples stars=1423 pushed=2026-09-01 created=2022-07-01"
+   },
+   {
+    "title": "Free-tier Solana event stream to webhooks",
+    "why_now": "Small teams need push notifs on program events without running infra.",
+    "evidence": "github | [active repo] otter-sec/anchor stars=5128 pushed=2026-09-07 created=2021-01-01; github | [active repo] solana-foundation/program-examples stars=1423 pushed=2026-09-01 created=2022-07-01",
+    "tie_in": "Named demand signals: otter-sec/anchor, solana-foundation/program-examples. Hook: github | [active repo] otter-sec/anchor stars=5128 pushed=2026-09-07 created=2021-01-01"
+   },
+   {
+    "title": "Signal dashboard for this narrative",
+    "why_now": "Consolidate the underlying feeds below into one live view with alerts.",
+    "evidence": "github | [active repo] otter-sec/anchor stars=5128 pushed=2026-09-07 created=2021-01-01; github | [active repo] solana-foundation/program-examples stars=1423 pushed=2026-09-01 created=2022-07-01",
+    "tie_in": "Named demand signals: otter-sec/anchor, solana-foundation/program-examples. Hook: github | [active repo] solana-foundation/program-examples stars=1423 pushed=2026-09-01 created=2022-07-01"
+   }
+  ],
+  "6": [
+   {
+    "title": "High-signal Solana program diff watcher",
+    "why_now": "Anchored upgrades change behavior silently; a diff-alert service protects integrators.",
+    "evidence": "github | [active repo] rango-exchange/rango-sdk stars=1659 pushed=2026-09-02 created=2022-02-10; github | [active repo] rango-exchange/rango-client stars=1126 pushed=2026-09-07 created=2022-12-18",
+    "tie_in": "Named demand signals: rango-exchange/rango-sdk, rango-exchange/rango-client. Hook: github | [active repo] rango-exchange/rango-client stars=1126 pushed=2026-09-07 created=2022-12-18"
+   },
+   {
+    "title": "Free-tier Solana event stream to webhooks",
+    "why_now": "Small teams need push notifs on program events without running infra.",
+    "evidence": "github | [active repo] rango-exchange/rango-sdk stars=1659 pushed=2026-09-02 created=2022-02-10; github | [active repo] rango-exchange/rango-client stars=1126 pushed=2026-09-07 created=2022-12-18",
+    "tie_in": "Named demand signals: rango-exchange/rango-sdk, rango-exchange/rango-client. Hook: github | [active repo] rango-exchange/rango-sdk stars=1659 pushed=2026-09-02 created=2022-02-10"
+   },
+   {
+    "title": "Signal dashboard for this narrative",
+    "why_now": "Consolidate the underlying feeds below into one live view with alerts.",
+    "evidence": "github | [active repo] rango-exchange/rango-sdk stars=1659 pushed=2026-09-02 created=2022-02-10; github | [active repo] rango-exchange/rango-client stars=1126 pushed=2026-09-07 created=2022-12-18",
+    "tie_in": "Named demand signals: rango-exchange/rango-sdk, rango-exchange/rango-client. Hook: github | [active repo] rango-exchange/rango-client stars=1126 pushed=2026-09-07 created=2022-12-18"
+   }
+  ],
+  "7": [
+   {
+    "title": "Liquidity-health scanner for new launches",
+    "why_now": "Most launches die to honeypots and thin liquidity; a pre-trade health score has clear demand.",
+    "evidence": "github | [new repo] Ashkiln/pumpfun-launcher stars=3 pushed=2026-09-06 created=2026-09-03; hackernews | HN story (1 pts, 2 comments): LIOS Coin",
+    "tie_in": "Named demand signals: Ashkiln/pumpfun-launcher, HN story (1 pts, 2 comments): LIOS Coin. Hook: hackernews | HN story (1 pts, 2 comments): LIOS Coin"
+   },
+   {
+    "title": "Social-momentum tracker wired to on-chain flows",
+    "why_now": "Price moves lag social spikes; joining the two gives an early-warning feed.",
+    "evidence": "github | [new repo] Ashkiln/pumpfun-launcher stars=3 pushed=2026-09-06 created=2026-09-03; hackernews | HN story (1 pts, 2 comments): LIOS Coin",
+    "tie_in": "Named demand signals: Ashkiln/pumpfun-launcher, HN story (1 pts, 2 comments): LIOS Coin. Hook: github | [new repo] Ashkiln/pumpfun-launcher stars=3 pushed=2026-09-06 created=2026-09-03"
+   },
+   {
+    "title": "Signal dashboard for this narrative",
+    "why_now": "Consolidate the underlying feeds below into one live view with alerts.",
+    "evidence": "github | [new repo] Ashkiln/pumpfun-launcher stars=3 pushed=2026-09-06 created=2026-09-03; hackernews | HN story (1 pts, 2 comments): LIOS Coin",
+    "tie_in": "Named demand signals: Ashkiln/pumpfun-launcher, HN story (1 pts, 2 comments): LIOS Coin. Hook: hackernews | HN story (1 pts, 2 comments): LIOS Coin"
+   }
+  ],
+  "8": [
+   {
+    "title": "Cross-pool MEV-aware router with simulation guardrails",
+    "why_now": "Fragmented liquidity across CLMM pools makes naive routing expensive at size.",
+    "evidence": "dexscreener:topboost | DexScreener topboost Solana token E4Ap4icMLwKot8rkkTbq5JkS5kZxt5XCE3yfxbzYBjHx amount=?; superteam-earn | Superteam Earn bounty 'Trade, Tweet & Earn' reward=500USDC skills=; dexscreener:boosted | DexScreener boosted Solana token DgusxuYhbs5TqvLYNhEwEow8GwXyFNgc5hspP7SjfaNc amount=30",
+    "tie_in": "Named demand signals: DexScree\u2026, topboost\u2026, E4Ap4icM\u2026, Superteam Earn: Trade, Tweet & Earn. Hook: superteam-earn | Superteam Earn bounty 'Trade, Tweet & Earn' reward=500USDC skills="
+   },
+   {
+    "title": "Automated LP position manager for concentrated liquidity",
+    "why_now": "Active-range management is manual and time-costly for retail LPs.",
+    "evidence": "dexscreener:topboost | DexScreener topboost Solana token E4Ap4icMLwKot8rkkTbq5JkS5kZxt5XCE3yfxbzYBjHx amount=?; superteam-earn | Superteam Earn bounty 'Trade, Tweet & Earn' reward=500USDC skills=; dexscreener:boosted | DexScreener boosted Solana token DgusxuYhbs5TqvLYNhEwEow8GwXyFNgc5hspP7SjfaNc amount=30",
+    "tie_in": "Named demand signals: DexScree\u2026, topboost\u2026, E4Ap4icM\u2026, Superteam Earn: Trade, Tweet & Earn. Hook: dexscreener:boosted | DexScreener boosted Solana token DgusxuYhbs5TqvLYNhEwEow8GwXyFNgc5hspP7SjfaNc amount=30"
+   },
+   {
+    "title": "Real-time risk dashboard for perp traders",
+    "why_now": "Funding + liquidation data exist on-chain but are not surfaced in one decision view.",
+    "evidence": "dexscreener:topboost | DexScreener topboost Solana token E4Ap4icMLwKot8rkkTbq5JkS5kZxt5XCE3yfxbzYBjHx amount=?; superteam-earn | Superteam Earn bounty 'Trade, Tweet & Earn' reward=500USDC skills=; dexscreener:boosted | DexScreener boosted Solana token DgusxuYhbs5TqvLYNhEwEow8GwXyFNgc5hspP7SjfaNc amount=30",
+    "tie_in": "Named demand signals: DexScree\u2026, topboost\u2026, E4Ap4icM\u2026, Superteam Earn: Trade, Tweet & Earn. Hook: dexscreener:newprofile | DexScreener newprofile Solana token 21J5UBb7BGvAbXKwbx9Ab84vLZnzphRTmQLwuT1jt9uS amount=?"
+   }
+  ],
+  "9": [
+   {
+    "title": "Merchant checkout widget with auto-stablecoin conversion",
+    "why_now": "Accepting volatile crypto scares merchants; instant USDC settlement removes the fear.",
+    "evidence": "superteam-earn | Superteam Earn bounty 'Solana Summit Serbia Content Bounty: $10,000 for the best summit content' reward=10000USDG skills=; superteam-earn | Superteam Earn bounty 'CastleDAO Content Challenge' reward=1000USDG skills=; superteam-earn | Superteam Earn bounty '$1,000 USDC Manic Bug Bounty' reward=1000USDC skills=",
+    "tie_in": "Named demand signals: Superteam Earn: Solana Summit Serbia Content Bounty: $10,000 for the best summit content, Superteam Earn: CastleDAO Content Challenge, Superteam Earn: $1,000 USDC Manic Bug Bounty, Superteam Earn: Show the world SOLARA \u2014 Content + Seeker dApp reviews. Hook: superteam-earn | Superteam Earn bounty 'CastleDAO Content Challenge' reward=1000USDG skills="
+   },
+   {
+    "title": "Payroll streaming for global teams",
+    "why_now": "Per-second stablecoin streams fit contractor work and dodge banking delays.",
+    "evidence": "superteam-earn | Superteam Earn bounty 'Solana Summit Serbia Content Bounty: $10,000 for the best summit content' reward=10000USDG skills=; superteam-earn | Superteam Earn bounty 'CastleDAO Content Challenge' reward=1000USDG skills=; superteam-earn | Superteam Earn bounty '$1,000 USDC Manic Bug Bounty' reward=1000USDC skills=",
+    "tie_in": "Named demand signals: Superteam Earn: Solana Summit Serbia Content Bounty: $10,000 for the best summit content, Superteam Earn: CastleDAO Content Challenge, Superteam Earn: $1,000 USDC Manic Bug Bounty, Superteam Earn: Show the world SOLARA \u2014 Content + Seeker dApp reviews. Hook: superteam-earn | Superteam Earn bounty '$1,000 USDC Manic Bug Bounty' reward=1000USDC skills="
+   },
+   {
+    "title": "Signal dashboard for this narrative",
+    "why_now": "Consolidate the underlying feeds below into one live view with alerts.",
+    "evidence": "superteam-earn | Superteam Earn bounty 'Solana Summit Serbia Content Bounty: $10,000 for the best summit content' reward=10000USDG skills=; superteam-earn | Superteam Earn bounty 'CastleDAO Content Challenge' reward=1000USDG skills=; superteam-earn | Superteam Earn bounty '$1,000 USDC Manic Bug Bounty' reward=1000USDC skills=",
+    "tie_in": "Named demand signals: Superteam Earn: Solana Summit Serbia Content Bounty: $10,000 for the best summit content, Superteam Earn: CastleDAO Content Challenge, Superteam Earn: $1,000 USDC Manic Bug Bounty, Superteam Earn: Show the world SOLARA \u2014 Content + Seeker dApp reviews. Hook: superteam-earn | Superteam Earn bounty 'Show the world SOLARA \u2014 Content + Seeker dApp reviews' reward=500USDC skills="
+   }
+  ],
+  "10": [
+   {
+    "title": "Cross-pool MEV-aware router with simulation guardrails",
+    "why_now": "Fragmented liquidity across CLMM pools makes naive routing expensive at size.",
+    "evidence": "dexscreener:topboost | DexScreener topboost Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?; dexscreener:boosted | DexScreener boosted Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=500; dexscreener:newprofile | DexScreener newprofile Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?",
+    "tie_in": "Named demand signals: DexScree\u2026, topboost\u2026, PHgCReUn\u2026, newprofi\u2026. Hook: dexscreener:boosted | DexScreener boosted Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=500"
+   },
+   {
+    "title": "Automated LP position manager for concentrated liquidity",
+    "why_now": "Active-range management is manual and time-costly for retail LPs.",
+    "evidence": "dexscreener:topboost | DexScreener topboost Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?; dexscreener:boosted | DexScreener boosted Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=500; dexscreener:newprofile | DexScreener newprofile Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?",
+    "tie_in": "Named demand signals: DexScree\u2026, topboost\u2026, PHgCReUn\u2026, newprofi\u2026. Hook: dexscreener:newprofile | DexScreener newprofile Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?"
+   },
+   {
+    "title": "Real-time risk dashboard for perp traders",
+    "why_now": "Funding + liquidation data exist on-chain but are not surfaced in one decision view.",
+    "evidence": "dexscreener:topboost | DexScreener topboost Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?; dexscreener:boosted | DexScreener boosted Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=500; dexscreener:newprofile | DexScreener newprofile Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?",
+    "tie_in": "Named demand signals: DexScree\u2026, topboost\u2026, PHgCReUn\u2026, newprofi\u2026. Hook: dexscreener:topboost | DexScreener topboost Solana token PHgCReUnUsk1jUTVzBZUV5SDSmCyTT4ZVDAEkQZgoa2 amount=?"
+   }
+  ]
+ }
+}
