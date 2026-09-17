@@ -44,7 +44,7 @@ COST_GRID = (0.015, 0.02, 0.03)
 POOL_AGE_SLACK_S = 7200
 VOL_BUCKETS = [("lt10k", 0.0, 10_000.0), ("10k_100k", 10_000.0, 100_000.0), ("ge100k", 100_000.0, float("inf"))]
 DEX_SOURCES = ("dexscreener:boosted", "dexscreener:topboost", "dexscreener:newprofile")
-RATE_MIN_INTERVAL_S = 2.5
+RATE_MIN_INTERVAL_S = 4.8
 HTTP_TIMEOUT_S = 20
 HTTP_ATTEMPTS = 4
 FETCH_WORKERS = 6
@@ -134,7 +134,7 @@ def _http_json(url: str) -> dict:
             if e.code == 404:
                 return {"data": []}
             if e.code == 429:
-                time.sleep(30)
+                time.sleep(20)
                 continue
         except Exception as e:
             last_exc = e
