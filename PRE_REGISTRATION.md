@@ -721,3 +721,92 @@ test is train-only selection + WF + costs, exactly as specified here.
       /home/k4it0/Aegis_System/venv/bin/python; executed once (canonical);
       implementation repairs if any disclosed in the run log header
 - [ ] Verdict
+
+# APPENDIX 11 (2026-09-17, S20 addendum 4 / S21) — Meme-signal EV study: H14 paid boosts + H15 new profiles
+
+**Directive:** master, 2026-09-17: "lets study leverage + memes + new coins..
+we have solana radar" — approved as RESEARCH with kill rules (no trading, no
+wallet, no registration). Study 1 of 3 (boosts first). S20 wording said
+"pre-register H3+H4"; H3/H4 are taken (OI-flush, liq-cascade), so numbering
+continues at **H14/H15**; the mapping is exact: H14 = paid boosts,
+H15 = new profiles.
+
+**Research question (locked):** do DexScreener *paid promotion signals*
+(boosted / topboost) and *new-profile signals* on Solana tokens carry a
+tradeable taker edge after realistic DEX costs, or are they toxic flow?
+This is a signal-EV measurement, not a strategy backtest.
+
+## Data (locked)
+- Source: `data/signals.jsonl` (radar collector), sources
+  `dexscreener:boosted`, `dexscreener:topboost`, `dexscreener:newprofile`.
+  Mint = last path segment of `url`. Signal ts = `ts` (epoch).
+- Sample: ALL signals with `ts <= run_time - 7d` (full 7d outcome window
+  exists). Dedupe: earliest signal per (mint, class); a mint carrying both a
+  boost signal and a profile signal enters BOTH class samples with its own
+  earliest timestamp per class (classes are evaluated independently).
+- As of 2026-09-17 15:30 CEST: 606 signals >=7d old (451 newprofile,
+  123 boosted, 32 topboost) over 527 unique mints. Counts only — no return
+  was computed before this appendix was committed.
+- Prices: GeckoTerminal public API (no key). Pool selection rule: fetch
+  `networks/solana/tokens/{mint}/pools`; among returned pools prefer pools
+  with `pool_created_at <= signal_ts + 2h`, choose highest `reserve_in_usd`;
+  if none qualifies, use highest-reserve pool and flag `migration_risk`.
+  OHLCV: `networks/solana/pools/{pool}/ohlcv/hour`, hourly candles, fetched
+  with `before_timestamp = signal_ts + 7d + 3600`.
+
+## Measurement (locked)
+- **Entry:** open of the first hourly candle with `open_time >= signal_ts`
+  (honest, no look-ahead; models 0-60 min signal-to-fill latency at hourly
+  granularity, stated limitation).
+- **Exit:** open of the first candle at/after `signal_ts + H` for
+  H in {1h, 6h, 24h, 7d} (candle within +1h slack accepted).
+- **Returns:** gross = exit_open/entry_open - 1 per horizon.
+- **Costs:** round-trip cost applied once per position: **2.00% standard**;
+  sensitivity grid 1.50% / 3.00%. (DEX swap fee + slippage + priority fee;
+  thin-pool slippage is *understated* by any flat cost — stated limitation.)
+- **Dead / rug classification:** a position is `dead` if (a) no pool
+  returned for the mint, or (b) no candle exists at exit (pool died), or
+  (c) min(low) over the window <= 1% of entry (-99%+). Dead contributes
+  -100% (gross) in the **all-in** view; excluded from the **tradeable**
+  view. Both views are always reported.
+- **Drawdown:** min(hourly low over window)/entry - 1.
+- **Stratification (report-only, no selection):** entry-hour candle
+  `volume_usd` buckets: <$10k, $10k-100k, >=$100k. Current pool
+  `reserve_in_usd` reported as a limitation context (not point-in-time).
+- Clock/latency/slippage beyond the above are NOT modeled; results are
+  best-case for a taker.
+
+## Hypotheses (locked, falsifiable)
+- **H14 (paid boosts):** tokens at a paid-boost signal (boosted/topboost)
+  are promotional flow; prediction: **negative net EV for a taker at all
+  horizons**, rug/dead rate materially above the newprofile class's base
+  (paid boosts cluster on live memecoins, not literal fresh rugs).
+- **H15 (new profiles):** a new-profile signal marks a barely-traded token;
+  prediction: **negative net EV at all horizons** and the **highest
+  dead/rug rate** of the three sources (very new tokens die fastest).
+- Stated before the result: both classes fail; the study's value is the
+  measured body count, not a strategy.
+
+## Decision rules (locked)
+- **CONFIRMED HARMFUL (archive/kill):** mean net EV < 0 at ALL horizons in
+  the tradeable view, for that class. Archive the trading idea; one recorded
+  learning; no resurrection without new evidence + new gate.
+- **CANDIDATE EDGE (promote to Phase 2, still no trading):** any
+  class x horizon with tradeable-view mean net EV > +5.00% AND median net
+  return > 0 AND n >= 30. Phase 2 = point-in-time walk-forward study with
+  fill-level modeling, pre-registered separately. Entry into Phase 2 is a
+  research promotion only — never live, never wallet.
+- **INCONCLUSIVE:** n < 50 unique mints per class. Extend collection; re-run
+  the IDENTICAL grid at 14d signal age. No parameter changes.
+- **KILL rules (locked):** no threshold/parameter tuning after results; ONE
+  canonical run of the grid; implementation repairs allowed only to restore
+  compliance with this locked spec and must be disclosed in the run log
+  header. Any deviation voids the run.
+
+## Status (APPENDIX 11)
+- [x] Pre-registered 2026-09-17 BEFORE any return computation (only counts,
+  API schema, and tooling were verified; no token price/return was examined)
+- [ ] Canonical run (studies/boost_ev_study.py) — interpreter
+      /home/k4it0/Aegis_System/venv/bin/python; executed once; repairs if any
+      disclosed in the run log header
+- [ ] EV table + verdict
