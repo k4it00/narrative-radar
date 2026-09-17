@@ -884,6 +884,8 @@ does Kelly sizing support?
 ## Status (APPENDIX 12)
 - [x] Pre-registered 2026-09-17 BEFORE any simulation run (this commit; only
   file-column verification preceded — no simulation was executed)
-- [ ] Canonical run (studies/leverage_ruin_study.py) — executed once; repairs
-      if any disclosed in the run header
-- [ ] Ruin + Kelly tables + verdict
+- [x] Canonical run (studies/leverage_ruin_study.py, commit 59a02a8) —
+  executed once 2026-09-17T14:56:58Z->14:58:05Z; repairs disclosed: none
+- [x] Ruin + Kelly tables + verdict (commit 7b06a59;
+  reports/2026-09-17_leverage_ruin_study.md) — decision rule fired:
+  written recommendation against leverage beyond 1-2x for this capital
