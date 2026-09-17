@@ -936,5 +936,7 @@ tips/fees, token-account rent, and rug losses?
 
 ## Status (APPENDIX 13)
 - [x] Pre-registered 2026-09-17 BEFORE any recon or arithmetic (this commit)
-- [ ] Recon + cost/EV model
-- [ ] Verdict
+- [x] Recon + cost/EV model (commit f1 report; public sources cited, UNVERIFIED cells marked)
+- [x] Verdict — NOT FEASIBLE for $500: base-case EV −$424/mo at 5 attempts/day;
+  fixed infra 12%+/mo of capital; same-block insider flow dominates entries;
+  do not build, no wallet (reports/2026-09-17_sniping_feasibility.md)
