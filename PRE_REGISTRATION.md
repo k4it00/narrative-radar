@@ -810,3 +810,80 @@ This is a signal-EV measurement, not a strategy backtest.
       /home/k4it0/Aegis_System/venv/bin/python; executed once; repairs if any
       disclosed in the run log header
 - [ ] EV table + verdict
+
+# APPENDIX 12 (2026-09-17, S20 addendum 4) — Leverage ruin + Kelly study: R1/R2
+
+**Directive:** master, 2026-09-17: "lets study leverage + memes + new coins..
+we have solana radar" — Study 2 of 3: "Leverage ruin study: $500, 3x/5x/10x
+on SOL-PERP; fee + funding modeled; P(ruin) with/without edge; Kelly sizing
+for small accounts. Math only, no trading." Approved as RESEARCH with kill
+rules. R-numbering: risk studies (R1 ruin, R2 Kelly), distinct from return
+hypotheses H14/H15.
+
+**Research question (locked):** at master's actual deployable capital
+($500), what is the probability of ruin and the terminal-wealth distribution
+for long SOL-PERP positions at 3x/5x/10x (baselines 1x/2x), with fees and
+funding modeled, with and without assumed edge — and what leverage (if any)
+does Kelly sizing support?
+
+## Data (locked)
+- `Aegis_System/data/SOLUSDT_1h_2020_2026.csv` — 51,578 hourly rows
+  (2020-09-23 -> 2026-08-12), verified: timestamp, open/high/low/close,
+  volume, taker_buy_volume, funding_rate (hourly column; funding is charged
+  at 00/08/16 UTC stamps), open_interest.
+- Returns: hourly log returns from close-to-close.
+- Resampling: block bootstrap of contiguous 24h blocks, N=10,000 paths,
+  RNG seed 20260917. Horizons: 30 / 90 / 365 days.
+
+## Simulation mechanics (locked)
+- Two modes: (a) **fixed-notional** (position size set at entry, never
+  touched; equity = e0 + N0*(P/P0 - 1) - costs - funding), (b) **daily
+  rebalance** at 00:00 UTC back to constant leverage L on current equity.
+- Leverage set: L in {1, 2, 3, 5, 10}; e0 = $500. Long only.
+- Costs (locked): taker fee 0.05% per side + slippage 0.02% per side, charged
+  on every trade (entry, exit, each rebalance delta of notional).
+- Funding (locked): from the historical series at 00/08/16 UTC hours; long
+  pays positive rates and receives negative rates, applied to the current
+  notional. Missing/invalid funding value = 0. No funding on the cash part.
+- Liquidation rule (locked, simplified): maintenance margin mm = 0.50% of
+  current notional; position liquidated when equity <= mm * notional_current
+  (hourly resolution; close fees ignored at liquidation — equity set to 0 on
+  liquidation). This is slightly conservative.
+- Edge scenarios (explicitly NOT predictions): annualized drift mu in
+  {-20%, 0%, +20%, +50%} applied as a deterministic per-hour addition to
+  bootstrapped log returns. This is the only "edge" modeled.
+
+## Outputs (locked)
+- Per (mode, L, mu, horizon): P(liquidation), P(terminal equity < $50),
+  median / p10 / p90 terminal equity, mean terminal equity.
+- R2 Kelly: f* = mu / sigma^2 from the historical annualized sigma, for the
+  same mu grid; comparison of f* vs leverage multiples (L>1 implies f > 1);
+  practical note for $500 accounts.
+
+## Decision rules (locked)
+- No trading, no wallet, no recommendation to enable live execution (BIBLE
+  Art. V). Deliverable informs the master's capital policy only.
+- The "no-edge" scenario (mu=0) is the reference case; edge scenarios are
+  labeled hypothetical, never used to justify leverage.
+- If P(liquidation) at L>=3 exceeds 20% within 90 days in the reference
+  case, the study reports leverage beyond 1-2x as ruinous for this capital
+  and recommends against it in writing.
+
+## Kill rules (locked)
+- No parameter tuning after results; ONE canonical simulation grid; seed
+  fixed; implementation repairs disclosed in the run header.
+
+## Prediction (stated before the result)
+- L>=5, mu=0: P(liquidation) within 365d > 50% (both modes); L=3: material
+  (>20%); L=10: near-certain (>90%). Fees+funding worsen all numbers.
+- Kelly: f* <= ~0.25 even at mu=+20% (sigma ~90%/yr); leverage >2x is over-
+  Kelly for any realistic edge. With mu=0, f* = 0.
+- Bottom line prediction: for $500, leverage is a negative-EV lottery unless
+  a real, validated edge exists (which the radar gate has not yet shown).
+
+## Status (APPENDIX 12)
+- [x] Pre-registered 2026-09-17 BEFORE any simulation run (this commit; only
+  file-column verification preceded — no simulation was executed)
+- [ ] Canonical run (studies/leverage_ruin_study.py) — executed once; repairs
+      if any disclosed in the run header
+- [ ] Ruin + Kelly tables + verdict
