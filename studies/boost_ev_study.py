@@ -20,9 +20,11 @@ import json
 import statistics
 import subprocess
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,11 +44,36 @@ COST_GRID = (0.015, 0.02, 0.03)
 POOL_AGE_SLACK_S = 7200
 VOL_BUCKETS = [("lt10k", 0.0, 10_000.0), ("10k_100k", 10_000.0, 100_000.0), ("ge100k", 100_000.0, float("inf"))]
 DEX_SOURCES = ("dexscreener:boosted", "dexscreener:topboost", "dexscreener:newprofile")
-RATE_SLEEP_S = 2.2
-MAX_HTTP_RETRIES = 3
+RATE_MIN_INTERVAL_S = 2.5
+HTTP_TIMEOUT_S = 20
+HTTP_ATTEMPTS = 4
+FETCH_WORKERS = 6
 REPAIRS: list[str] = [
     "pre-run (before canonical execution): collapse/DD windows exclude the exit candle (hourly lows after the exit open are future info; spec-intent fix, no parameter change)",
+    "pre-run (before canonical execution, transport only): parallel fetch pool + dispatch limiter 24 req/min + per-mint FetchError isolation (fetch failures are excluded and reported, never counted as dead); measurement spec unchanged",
 ]
+
+
+class FetchError(RuntimeError):
+    pass
+
+
+class _Limiter:
+    def __init__(self, min_interval: float):
+        self._lock = threading.Lock()
+        self._interval = min_interval
+        self._next = 0.0
+
+    def wait(self) -> None:
+        with self._lock:
+            now = time.monotonic()
+            delay = self._next - now
+            self._next = max(now, self._next) + self._interval
+        if delay > 0:
+            time.sleep(delay)
+
+
+LIMITER = _Limiter(RATE_MIN_INTERVAL_S)
 
 NETWORK_CALLS = 0
 HTTP_ERRORS: list[str] = []
@@ -93,25 +120,26 @@ def all_mints(sample: dict[str, list[dict]]) -> list[str]:
 def _http_json(url: str) -> dict:
     global NETWORK_CALLS
     last_exc: Exception | None = None
-    for attempt in range(MAX_HTTP_RETRIES):
+    for attempt in range(HTTP_ATTEMPTS):
+        if attempt:
+            time.sleep(2.0 * attempt)
+        LIMITER.wait()
         try:
             NETWORK_CALLS += 1
             req = urllib.request.Request(url, headers=UA)
-            with urllib.request.urlopen(req, timeout=45) as r:
+            with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT_S) as r:
                 return json.loads(r.read())
         except urllib.error.HTTPError as e:
             last_exc = e
             if e.code == 404:
                 return {"data": []}
             if e.code == 429:
-                time.sleep(60)
+                time.sleep(30)
                 continue
-            raise
-        except (urllib.error.URLError, TimeoutError) as e:
+        except Exception as e:
             last_exc = e
-            time.sleep(5)
     HTTP_ERRORS.append(f"{url} :: {last_exc}")
-    raise RuntimeError(f"HTTP failed after retries: {url} :: {last_exc}")
+    raise FetchError(f"{url} :: {last_exc}")
 
 
 def fetch_cached(url: str, cache_file: Path) -> dict:
@@ -120,7 +148,6 @@ def fetch_cached(url: str, cache_file: Path) -> dict:
     data = _http_json(url)
     cache_file.parent.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(json.dumps(data))
-    time.sleep(RATE_SLEEP_S)
     return data
 
 
@@ -211,32 +238,90 @@ def bucket_of(vol_usd: float | None) -> str:
 
 
 def analyze(sample: dict[str, list[dict]], fetch_mints: list[str], smoke: bool = False) -> dict:
-    pools_cache: dict[str, list[dict]] = {}
-    for i, mint in enumerate(fetch_mints, 1):
-        pools_cache[mint] = fetch_pools(mint)
-        if i % 50 == 0:
-            print(f"[fetch] {i}/{len(fetch_mints)} pool lists", flush=True)
+    pools_map: dict[str, list[dict]] = {}
+    mint_errors: dict[str, str] = {}
+    with ThreadPoolExecutor(max_workers=FETCH_WORKERS) as ex:
+        futs = {ex.submit(fetch_pools, m): m for m in fetch_mints}
+        for done, fut in enumerate(as_completed(futs), 1):
+            mint = futs[fut]
+            try:
+                pools_map[mint] = fut.result()
+            except FetchError as e:
+                mint_errors[mint] = str(e)
+            if done % 25 == 0:
+                print(f"[fetch1] {done}/{len(futs)} pool lists (errors={len(mint_errors)})", flush=True)
+    picks: dict[tuple[str, str], tuple[dict | None, bool]] = {}
+    ohlcv_jobs: set[tuple[str, int]] = set()
+    for cls, sigs in sample.items():
+        for s in sigs:
+            mint, ts = s["mint"], s["ts"]
+            if mint in mint_errors:
+                continue
+            pool, migration = pick_pool(pools_map.get(mint, []), ts)
+            picks[(cls, mint)] = (pool, migration)
+            if pool is not None:
+                ohlcv_jobs.add((pool["address"], int(ts + HORIZONS["7d"] + SLACK_S)))
+    jobs = sorted(ohlcv_jobs)
+    ohlcv_map: dict[tuple[str, int], list] = {}
+    ohlcv_failed: set[tuple[str, int]] = set()
+    with ThreadPoolExecutor(max_workers=FETCH_WORKERS) as ex:
+        futs2 = {ex.submit(fetch_ohlcv, p, b): (p, b) for p, b in jobs}
+        for done, fut in enumerate(as_completed(futs2), 1):
+            key = futs2[fut]
+            try:
+                ohlcv_map[key] = fut.result()
+            except FetchError:
+                ohlcv_failed.add(key)
+            if done % 25 == 0:
+                print(f"[fetch2] {done}/{len(futs2)} ohlcv (errors={len(ohlcv_failed)})", flush=True)
     positions: list[dict] = []
     for cls, sigs in sample.items():
         for s in sigs:
             mint, ts = s["mint"], s["ts"]
-            pools = pools_cache.get(mint, [])
-            pool, migration = pick_pool(pools, ts)
-            rec = {"class": cls, "source": s["source"], "mint": mint, "signal_ts": ts, "pool": None, "migration_risk": migration, "dead_no_pool": pool is None}
-            if pool is None:
-                rec["horizons"] = {h: {"dead": True, "reason": "no_pool", "gross": None} for h in HORIZONS}
+            rec = {
+                "class": cls,
+                "source": s["source"],
+                "mint": mint,
+                "signal_ts": ts,
+                "pool": None,
+                "migration_risk": False,
+                "dead_no_pool": False,
+            }
+            if mint in mint_errors:
+                rec["fetch_error"] = mint_errors[mint]
+            else:
+                pool, migration = picks[(cls, mint)]
+                rec["migration_risk"] = migration
+                rec["dead_no_pool"] = pool is None
+                if pool is None:
+                    rec["horizons"] = {h: {"dead": True, "reason": "no_pool", "gross": None} for h in HORIZONS}
+                    rec["max_dd"] = None
+                    rec["entry_vol_usd"] = None
+                else:
+                    rec["pool"] = pool["address"]
+                    rec["pool_reserve_usd"] = pool["reserve_usd"]
+                    key = (pool["address"], int(ts + HORIZONS["7d"] + SLACK_S))
+                    if key in ohlcv_failed:
+                        rec["fetch_error"] = f"ohlcv {key[0]} @ {key[1]}"
+                    else:
+                        candles = ohlcv_map[key]
+                        rec.update(compute_position(candles, ts, HORIZONS))
+                        rec["candles"] = len(candles)
+            if "horizons" not in rec:
+                rec["horizons"] = {h: {"dead": True, "reason": "fetch_error", "gross": None} for h in HORIZONS}
                 rec["max_dd"] = None
                 rec["entry_vol_usd"] = None
-            else:
-                rec["pool"] = pool["address"]
-                rec["pool_reserve_usd"] = pool["reserve_usd"]
-                candles = fetch_ohlcv(pool["address"], int(ts + HORIZONS["7d"] + SLACK_S))
-                rec.update(compute_position(candles, ts, HORIZONS))
-                rec["candles"] = len(candles)
             rec["bucket"] = bucket_of(rec.get("entry_vol_usd"))
             positions.append(rec)
     if smoke:
-        return {"smoke": True, "mints": len(fetch_mints), "positions": len(positions), "network_calls": NETWORK_CALLS, "http_errors": HTTP_ERRORS}
+        return {
+            "smoke": True,
+            "mints": len(fetch_mints),
+            "positions": len(positions),
+            "fetch_errors": len({p["mint"] for p in positions if p.get("fetch_error")}),
+            "network_calls": NETWORK_CALLS,
+            "http_errors": HTTP_ERRORS,
+        }
     return summarize(positions)
 
 
@@ -265,8 +350,14 @@ def _stats(vals: list[float]) -> dict:
 def summarize(positions: list[dict]) -> dict:
     out: dict = {"classes": {}, "positions": positions}
     for cls in ("boost", "newprofile"):
-        cpos = [p for p in positions if p["class"] == cls]
-        cls_out: dict = {"n_signals": len(cpos), "n_mints": len({p["mint"] for p in cpos}), "horizons": {}}
+        allpos = [p for p in positions if p["class"] == cls]
+        cpos = [p for p in allpos if not p.get("fetch_error")]
+        cls_out: dict = {
+            "n_signals": len(allpos),
+            "n_fetch_errors": len(allpos) - len(cpos),
+            "n_mints": len({p["mint"] for p in cpos}),
+            "horizons": {},
+        }
         dds = [p["max_dd"] for p in cpos if p.get("max_dd") is not None]
         for h in HORIZONS:
             tradeable = [p for p in cpos if not p["horizons"][h]["dead"]]
@@ -375,7 +466,7 @@ def report_md(res: dict, meta: dict) -> str:
         lines += [
             f"## {cls.upper()} (H14)" if cls == "boost" else "## NEWPROFILE (H15)",
             "",
-            f"n={c['n_signals']} signals / {c['n_mints']} mints | mean maxDD(7d)={fmt_pct(c['mean_max_dd_7d'])} | migration-flagged: {c['migration_risk_n']}",
+            f"n={c['n_signals']} signals / {c['n_mints']} mints (fetch-errors excluded: {c['n_fetch_errors']}) | mean maxDD(7d)={fmt_pct(c['mean_max_dd_7d'])} | migration-flagged: {c['migration_risk_n']}",
             "",
             "| horizon | n tradeable | dead% | gross mean | net mean (2%) | median net | win% | p10 net | p90 net | all-in mean (2%) |",
             "|---|---|---|---|---|---|---|---|---|---|",

@@ -133,6 +133,18 @@ def test_summarize_dead_all_in_floor() -> None:
     assert res["classes"]["boost"]["horizons"]["24h"]["dead_rate"] == 1.0
 
 
+def test_summarize_excludes_fetch_errors() -> None:
+    ok = [_mkpos("boost", f"M{i:03d}", -0.2) for i in range(60)]
+    bad = _mkpos("boost", "MERR", None)
+    bad["fetch_error"] = "timeout"
+    bad["horizons"] = {h: {"dead": True, "reason": "fetch_error", "gross": None} for h in m.HORIZONS}
+    res = m.summarize(ok + [bad])
+    c = res["classes"]["boost"]
+    assert c["n_fetch_errors"] == 1
+    assert c["n_mints"] == 60
+    assert c["horizons"]["24h"]["tradeable_net_std"]["n"] == 60
+
+
 def test_report_md_renders() -> None:
     positions = [_mkpos("boost", f"M{i:03d}", 0.05) for i in range(60)]
     res = m.summarize(positions)
