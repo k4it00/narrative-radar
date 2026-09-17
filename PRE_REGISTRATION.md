@@ -806,10 +806,23 @@ This is a signal-EV measurement, not a strategy backtest.
 ## Status (APPENDIX 11)
 - [x] Pre-registered 2026-09-17 BEFORE any return computation (only counts,
   API schema, and tooling were verified; no token price/return was examined)
-- [ ] Canonical run (studies/boost_ev_study.py) — interpreter
-      /home/k4it0/Aegis_System/venv/bin/python; executed once; repairs if any
-      disclosed in the run log header
-- [ ] EV table + verdict
+- [x] Canonical run (studies/boost_ev_study.py @ 682c10d) — executed once
+  2026-09-17T14:33:06Z -> 17:07:04Z (fetch-limited wall time; 1,920 network
+  calls); repairs disclosed in the run header (both pre-run: collapse/DD
+  window excludes exit candle — spec-intent; transport parallelism +
+  limiter). 8 mints fetch-error excluded and reported (2 boost, 6
+  newprofile) — never classified as market outcomes.
+- [x] EV table + verdict (commit follow-up): **H15 CONFIRMED_HARMFUL**
+  (n=459 mints: tradeable net -11.1%/-17.6%/-25.5%/-20.7% at 1h/6h/24h/7d;
+  dead rate 26%->91%; all-in -34%..-93%; median 24h -30.9%). **H14 MIXED by
+  letter** — 7d tradeable mean +4.44% on n=32 breaks "all horizons
+  negative", but median 7d is -29.1% and p10 -96.6%: outlier artifact, no
+  candidate edge (none of the promotion thresholds met); substance: no edge,
+  not tradeable. Both ideas archived; no trading. Footnote (cosmetic): the
+  boost source-split label shows `topboost` for all boost-class signals —
+  a reporting-artifact of the dedupe output, not the pipeline; class
+  assignment and every number are unaffected. Run: 600 signals / 542 mints
+  frozen at start; report `reports/2026-09-17_boost_ev_study.md`.
 
 # APPENDIX 12 (2026-09-17, S20 addendum 4) — Leverage ruin + Kelly study: R1/R2
 
