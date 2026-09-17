@@ -47,7 +47,7 @@ DEX_SOURCES = ("dexscreener:boosted", "dexscreener:topboost", "dexscreener:newpr
 RATE_MIN_INTERVAL_S = 4.8
 HTTP_TIMEOUT_S = 20
 HTTP_ATTEMPTS = 4
-FETCH_WORKERS = 6
+FETCH_WORKERS = 12
 REPAIRS: list[str] = [
     "pre-run (before canonical execution): collapse/DD windows exclude the exit candle (hourly lows after the exit open are future info; spec-intent fix, no parameter change)",
     "pre-run (before canonical execution, transport only): parallel fetch pool + dispatch limiter 24 req/min + per-mint FetchError isolation (fetch failures are excluded and reported, never counted as dead); measurement spec unchanged",
