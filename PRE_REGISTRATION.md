@@ -889,3 +889,52 @@ does Kelly sizing support?
 - [x] Ruin + Kelly tables + verdict (commit 7b06a59;
   reports/2026-09-17_leverage_ruin_study.md) — decision rule fired:
   written recommendation against leverage beyond 1-2x for this capital
+
+# APPENDIX 13 (2026-09-17, S20 addendum 4) — New-coin sniping feasibility: F1
+
+**Directive:** master, 2026-09-17: Study 3 of 3 — "New-coin sniping
+feasibility: infra cost (RPC, sniper bot, priority fees), latency reality,
+wallet requirement — vs $500 capital. Feasibility verdict only." Desk
+research + arithmetic only: no wallet, no transactions, no bot deployment.
+
+**Question (locked):** can a $500-capital operator with our stack (home
+connection, no colocation, no insider flow, no live wallet) run a Solana
+new-token sniping operation with positive expected value after infra costs,
+tips/fees, token-account rent, and rug losses?
+
+## Method (locked)
+- **Cost model:** itemized monthly stack (RPC tier, VPS, OSS bot, Jito /
+  priority tips per attempt, ~0.002 SOL token-account rent per attempt),
+  attempt-rate assumptions, capital lockup in stuck rugs. Public list prices
+  cited with sources.
+- **Latency reality:** slot time (public, ~400ms), geographic latency to
+  leaders, colocated vs home paths, Jito bundle auction dynamics, public
+  evidence of 0-slot snipers; our expected queue position vs professionals.
+- **Competition:** public research/analyses on who wins new-pair snipes and
+  what retail fill rates look like (adverse selection).
+- **EV model:** EV per attempt = P(fill) * E(gain | fill) - tips - fees -
+  rent - P(rug) * loss; parameterized from public ranges; sensitivity table
+  (optimistic / base / pessimistic).
+- **Tie-in:** H14/H15 measured EV for new-profile tokens is an *optimistic*
+  proxy for late buyers (signal time > snipe time); if that proxy is
+  negative, real sniping is worse by construction.
+
+## Prediction (stated before recon)
+- NOT FEASIBLE at $500. Fixed monthly costs + per-attempt tips + rug losses
+  exceed any plausible retail edge; our latency ranks us behind colocated
+  professionals and Jito auctions, so fills skew adverse (we win the losers).
+- Expected verdict: do not build; archive with cited numbers.
+
+## Decision rule (locked)
+- Verdict is written with the cost/EV table. Build promotion requires
+  positive EV under BOTH pessimistic and base assumptions AND explicit
+  master authorization (wallet creation is a master-gated action; BIBLE
+  Art. V). Otherwise: archive, recorded reasons, no wallet.
+- Kill rules: no threshold tuning after recon; public sources cited; if
+  key cost inputs cannot be verified from public sources, the cell is marked
+  UNVERIFIED rather than invented.
+
+## Status (APPENDIX 13)
+- [x] Pre-registered 2026-09-17 BEFORE any recon or arithmetic (this commit)
+- [ ] Recon + cost/EV model
+- [ ] Verdict
