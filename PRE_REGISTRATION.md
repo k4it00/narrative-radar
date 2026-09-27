@@ -953,3 +953,144 @@ tips/fees, token-account rent, and rug losses?
 - [x] Verdict — NOT FEASIBLE for $500: base-case EV −$424/mo at 5 attempts/day;
   fixed infra 12%+/mo of capital; same-block insider flow dominates entries;
   do not build, no wallet (reports/2026-09-17_sniping_feasibility.md)
+
+# APPENDIX 14 (2026-09-22) — H17-LAYA: zero-shot typed-decision direction test
+
+**Directive:** master, 2026-09-22: "try to use laya as decision making.. lets
+see if it will have an edgee on our data", then "do it". Sequencing (master
+answered earlier same day): finish H17 BEFORE any stonkfly/H18 work; H16
+(liquidity-sweep) remains a separate pending approval. Research only;
+ZERO pipeline position; paper-only promotion ceiling (BIBLE Art. V).
+Workflow task: task-8f6046bb027d.
+
+**Hypothesis ID:** H17 (parent: none). Fingerprint: family =
+zero-shot-decision-model-classification; direction = both (up→long,
+down→short, flat→none); horizon = 24h; features = fixed causal OHLCV+funding
+scalar set rendered as text; entry = argmax class at daily decision; exit =
++24h. Novelty: no prior decision-model/LLM direction hypothesis in this
+registry (H6 was taker-flow continuation — different features and horizon).
+Trial accounting locked: independent_hypotheses_attempted = 1 (H17);
+parameter_trials = 0 (zero-shot, no tuning); ~6 unscored interface-probe API
+calls on 2026-09-22 disclosed (response-schema discovery only — no label
+touching, no selection from them).
+
+**Mechanism (stated before result):** a pretrained typed-decision model
+(laya, convaiinnovations/laya `typed-decisions`, local CPU daemon :8477)
+maps a fixed causal market-state text to a 3-way direction class. Claim under
+test: the model's learned cross-feature priors discriminate next-24h
+direction better than trivial baselines, after costs. This is a
+predictive-skill hypothesis with NO constrained-flow story; positive raw
+returns alone are insufficient — gates below require beating baselines.
+
+## Prediction (stated before the run)
+- EXPECT KILL. Interface probes returned near-uniform class probabilities;
+  a 421M typed-decisions model is not expected to beat oracle-majority +
+  30d-momentum on six majors. Predicted accuracy band 0.33–0.46; net EV ≈ 0
+  at 15bps; G-Cal borderline. A PASS would be genuinely surprising and would
+  still require the champion 10-gate standard before any promotion talk.
+
+## Data (locked)
+- Six 1h CSVs: `Aegis_System/data/{BTC,ETH,SOL,BNB,DOGE,XRP}USDT_1h_2020_2026.csv`
+  (each 2020-09-23 → 2026-08-12, 51,577 rows). sha256 of each file recorded
+  in the run report at execution time (dataset manifest hash = sha256 of the
+  sorted per-file digests).
+- Feature warmup may use history from 2020-09-23. Decision window (locked):
+  2022-03-06 00:00 UTC → 2026-08-12 00:00 UTC (OOS-from convention of the
+  H-series), daily slots only (ts.hour == 0), all six pairs →
+  n ≈ 9,714 pair-days.
+
+## State / label / availability (locked)
+- Timestamp convention: `ts` = hourly bar open time; bar close known at
+  `ts+1h` (availability time of all features).
+- Features (10 scalars + pair/date header, all through the `ts` bar close,
+  no other inputs): ret_1h, ret_24h, ret_7d, ret_30d (close-to-close);
+  realized vol_24h (std of 1h log-returns over trailing 24 bars); range_24h =
+  (max-high − min-low)/close over 24 bars; volume_z = z-score of last-24h
+  volume vs trailing 7d daily volume mean/std; taker_buy_ratio_24h =
+  Σtaker_buy_volume/Σvolume over 24 bars; funding_rate column at `ts`
+  (last-settled print, causal); d_from_7d_high; d_from_30d_high (% below
+  trailing high). Missing input → slot dropped (counted, disclosed).
+- Label (evaluation only): y = C[ts+24h]/C[ts] − 1 (close-to-close, matching
+  the probe wording). Class: up if y ≥ +0.15%, down if y ≤ −0.15%, else flat.
+  Flat band 0.15% was fixed during interface probing BEFORE this appendix and
+  is not to be changed.
+- Questions JSON (locked verbatim): `direction` = type choice, instructions
+  "Predict the next 24h close-to-close direction of this market. Use flat
+  only if the move is likely under 0.15%.", criteria {up, down, flat} with
+  the three plain-English criteria used in the schema probe; `confidence` =
+  type score, instructions "Confidence in the direction call from 0 (guess)
+  to 10 (certain).", criteria ["guess","low","medium","high","certain"]
+  (scale = len(criteria)−1 = 4; conf_norm = score/4 clipped to [0,1]).
+- Prediction recorded per slot: `answers.direction.choice` (argmax),
+  `answers.direction.probabilities`, `answers.confidence.score`,
+  `conf_norm`, answer-level `confidence` field, `routing` receipt, latency_ms.
+  Daemon: POST /evaluate {state, questions, model:"typed-decisions"},
+  resumable append-only JSONL.
+
+## Execution & cost model (locked)
+- Side: up→+1, down→−1, flat→0; notional 1× fixed at entry; equal weight
+  1/6 per pair; decisions independent per pair-day (no cross-pair netting).
+- Base fills: entry = open of bar `ts+1h`, exit = open of bar `ts+25h`
+  (1h decision-to-fill delay built in). Classification uses closes;
+  P&L uses these opens (disclosed horizon micro-mismatch).
+- Fees: taker ladder c ∈ {10, 15, 20} bps per side; round-trip cost 2c on
+  notional whenever side ≠ 0. Gate cost = 15bps; 10/20 reported.
+- Funding (in P&L, not in features beyond the `ts` print): settlements at
+  08:00 and 16:00 UTC strictly inside the hold window; long pays positive
+  rate, receives negative (rate stamped at the settlement hour; causal
+  column semantics disclosed as the one funding approximation).
+- Baselines (all scored on identical slots, fills, costs, funding):
+  B1 oracle full-window majority class (uses eval labels — disclosed oracle
+  bound, conservative for the candidate); B2 random uniform 3-class,
+  seed 20260922; B3 30d momentum → side = 0 if |ret_30d| < 0.15% else
+  sign(ret_30d); B4 BTC buy-and-hold over the same window (reported for
+  CAGR/Sharpe/DD context, not a side-strategy baseline).
+
+## Gates (locked — ALL required for PASS; one iteration only)
+- **G-Acc:** overall accuracy strictly > max(B1 acc, B3 acc); AND ≥3 of 4
+  OOS windows have accuracy > that window's own oracle-majority accuracy.
+- **G-Cal:** Spearman(conf_norm, correctness) ≥ 0.25 with p < 0.01 over all
+  slots. (Class-probability ECE reported as a diagnostic, not a gate —
+  probes showed structurally flattened probabilities.)
+- **G-EV @15bps:** equal-weight daily portfolio net Sharpe ≥ 1.20
+  (annualized √365 over daily returns incl. flat days); PF ≥ 1.20; maxDD ≤
+  30%; non-flat signals ≥ 100 (expect ~thousands); ≥3 of 4 windows with net
+  return > 0; top-5 trades ≤ 35% of gross profit; PF excluding top-5 ≥ 1.0;
+  net Sharpe strictly > B1 Sharpe AND > B3 Sharpe at the same 15bps.
+- **G-Stress:** at 20bps PF ≥ 1.0; delay stress (entry open ts+2h, exit
+  open ts+26h) Sharpe ≥ 0.70 × base Sharpe at 15bps.
+- Windows (locked, non-overlapping): W1 2022-03-06→2023-03-06,
+  W2 →2024-03-06, W3 →2025-03-06, W4 →2026-08-12.
+- Verdict ∈ {PASS, KILL, STOP}; KILL on any failed gate; STOP on any stop
+  condition below. PASS is a research verdict only — promotion ceiling stays
+  paper, and the champion 10-gate standard would still be required.
+
+## Stop conditions (operationalized, locked)
+1. Daemon unreachable or repeated request failures spanning > 5 minutes.
+2. Pilot parse failure (response missing choice/probabilities/confidence).
+3. STOP-CONSTANT: ≥99% of pilot responses share one identical `choice`.
+4. STOP-UNIFORM: ≥99% of pilot responses have max(class probabilities) ≤
+   0.34 AND stdev(confidence score) == 0.0 (no usable signal channel).
+5. STOP-ETA: pilot median latency × remaining slots projects > 6 hours →
+   stop and report; NO sample trimming, no cadence change.
+6. Any lookahead discovered in features → abort; implementation repairs only
+   with explicit disclosure in the run header.
+7. Master revokes mid-run.
+Operationalization note: conditions 3–4 are the pre-run reading of the task
+stop-condition "constant-uniform probs >99%"; argmax variation with
+flattened probabilities is NOT alone a stop (confidence channel exists for
+tie-breaks), but constant argmax OR fully degenerate outputs are.
+
+## Outputs (locked)
+- Runner: `Aegis_System/research/h17_laya_gate_run.py` (--pilot / --full /
+  --gates modes), predictions JSONL + log under
+  `Aegis_System/reports/research/h17_laya_*.{jsonl,log,json}`.
+- Report must include: manifest hash, per-window metrics, all baselines,
+  cost ladder, delay stress, latency stats, stop-condition status, verdict,
+  rejection_reasons[] if any.
+
+## Status (APPENDIX 14)
+- [x] Pre-registered 2026-09-22 BEFORE any pilot or full scoring (this
+  edit; only schema/interface probes preceded — unscored, disclosed above)
+- [ ] Pilot ≥90 slots + latency log
+- [ ] Full run + gates + verdict
